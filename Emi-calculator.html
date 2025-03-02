@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculate your Equated Monthly Installment (EMI) for loans with our easy-to-use EMI Calculator. Get instant results and plan your finances better.">
+  <meta name="keywords" content="EMI Calculator, Loan Calculator, Finance Tool, EMI Calculation, Loan EMI">
+  <meta name="author" content="Vai">
+  <title>EMI Calculator - Calculate Loan EMI Easily</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: 450px;
+      width: 100%;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    .input-group input:focus {
+      border-color: #6a11cb;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #6a11cb;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #2575fc;
+    }
+
+    .result {
+      margin-top: 25px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 500;
+      color: #333;
+      padding: 15px;
+      background: rgba(102, 16, 242, 0.1);
+      border-radius: 8px;
+    }
+
+    .ad-container {
+      margin: 25px 0;
+      text-align: center;
+    }
+
+    .ad-container ins {
+      display: inline-block;
+      width: 100%;
+      max-width: 300px;
+      height: 250px;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 25px;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: #6a11cb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>EMI Calculator</h1>
+    <div class="input-group">
+      <label for="loanAmount">Loan Amount (₹)</label>
+      <input type="number" id="loanAmount" placeholder="Enter loan amount">
+    </div>
+    <div class="input-group">
+      <label for="interestRate">Interest Rate (% per annum)</label>
+      <input type="number" id="interestRate" placeholder="Enter interest rate">
+    </div>
+    <div class="input-group">
+      <label for="loanTenure">Loan Tenure (in months)</label>
+      <input type="number" id="loanTenure" placeholder="Enter loan tenure">
+    </div>
+    <button onclick="calculateEMI()">Calculate EMI</button>
+    <div class="result" id="result"></div>
+
+    <!-- AdSense Ad Container -->
+    <div class="ad-container">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" <!-- Replace with your AdSense Ad Unit ID -->
+           data-ad-slot="XXXXXXXXXX" <!-- Replace with your Ad Slot ID -->
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <div class="footer">
+      &copy; 2023 EMI Calculator. All rights reserved. | 
+      <a href="#" target="_blank">Privacy Policy</a>
+    </div>
+  </div>
+
+  <script>
+    function calculateEMI() {
+      const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+      const interestRate = parseFloat(document.getElementById('interestRate').value);
+      const loanTenure = parseFloat(document.getElementById('loanTenure').value);
+
+      if (isNaN(loanAmount) || isNaN(interestRate) || isNaN(loanTenure)) {
+        document.getElementById('result').innerText = "Please enter valid inputs.";
+        return;
+      }
+
+      const monthlyInterestRate = (interestRate / 12) / 100;
+      const emi = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTenure)) /
+                  (Math.pow(1 + monthlyInterestRate, loanTenure) - 1);
+
+      document.getElementById('result').innerText = `Your EMI is: ₹${emi.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
